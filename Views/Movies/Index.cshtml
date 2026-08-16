@@ -1,0 +1,58 @@
+﻿@model IEnumerable<KinoBilietuRezervacija.Models.Movie>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Filmų sąrašas";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="mb-0">Filmai</h1>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-primary" asp-action="Create">Pridėti naują filmą</a>
+    }
+</div>
+
+<form asp-controller="Movies" asp-action="Index" method="get" class="row g-2 mb-4">
+    <div class="col-md-4">
+        <input type="text" name="searchString" value="@Context.Request.Query["searchString"]" class="form-control" placeholder="Ieškoti pagal pavadinimą" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-primary">Ieškoti</button>
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Pavadinimas</th>
+                <th>Žanras</th>
+                <th>Trukmė</th>
+                <th>Aprašymas</th>
+                <th>Veiksmai</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@movie.Pavadinimas</td>
+                    <td>@movie.Zanras</td>
+                    <td>@movie.Trukme min</td>
+                    <td>@movie.Aprasymas</td>
+                    <td>
+                        <a class="btn btn-sm btn-info me-1" asp-action="Details" asp-route-id="@movie.ID">Peržiūrėti</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="btn btn-sm btn-warning me-1" asp-action="Edit" asp-route-id="@movie.ID">Redaguoti</a>
+                            <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@movie.ID">Ištrinti</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

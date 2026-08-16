@@ -1,0 +1,26 @@
+﻿@model KinoBilietuRezervacija.Models.Screening
+@{
+    ViewData["Title"] = "Ištrinti seansą";
+}
+
+<div class="container mt-4">
+    <div class="card border-danger">
+        <div class="card-header bg-danger text-white">
+            <h4>Ar tikrai norite ištrinti šį seansą?</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Filmas:</strong> @Model.Filmas?.Pavadinimas</p>
+            <p><strong>Data:</strong> @Model.DataLaikas.ToString("yyyy-MM-dd HH:mm")</p>
+            <p><strong>Kaina:</strong> @Model.Kaina €</p>
+            <p><strong>Salė:</strong> @Model.SalesNumeris</p>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="ID" />
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-danger"> Ištrinti</button>
+                    <a asp-action="Index" class="btn btn-secondary"> Atgal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

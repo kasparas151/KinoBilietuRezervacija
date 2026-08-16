@@ -1,0 +1,23 @@
+﻿@model KinoBilietuRezervacija.Models.Ticket
+
+@{
+    ViewData["Title"] = "Ištrinti bilietą";
+}
+
+<h1>Ar tikrai norite ištrinti bilietą?</h1>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Seansas?.Filmas?.Pavadinimas</h4>
+        <p><strong>Data:</strong> @Model.Seansas?.DataLaikas.ToString("yyyy-MM-dd HH:mm")</p>
+        <p><strong>Pirkėjas:</strong> @Model.PirkejoVardas</p>
+        <p><strong>Vieta:</strong> @Model.VietosNumeris</p>
+        <p><strong>Būsena:</strong> @Model.MokejimoBusena</p>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="ID" />
+            <button type="submit" class="btn btn-danger">Ištrinti</button>
+            <a asp-action="Index" class="btn btn-secondary ms-2">Atgal</a>
+        </form>
+    </div>
+</div>

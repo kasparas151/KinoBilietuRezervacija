@@ -1,0 +1,23 @@
+﻿@model KinoBilietuRezervacija.Models.Screening
+@{
+    ViewData["Title"] = "Seanso informacija";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-body">
+            <h3 class="card-title">@Model.Filmas?.Pavadinimas</h3>
+            <p class="card-text"><strong> Data:</strong> @Model.DataLaikas.ToString("yyyy-MM-dd HH:mm")</p>
+            <p class="card-text"><strong> Kaina:</strong> @Model.Kaina.ToString("0.00") €</p>
+            <p class="card-text"><strong> Salės numeris:</strong> @Model.SalesNumeris</p>
+        </div>
+    </div>
+
+    <div class="mt-3 d-flex gap-2">
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-warning"> Redaguoti</a>
+        }
+        <a asp-action="Index" class="btn btn-secondary"> Atgal</a>
+    </div>
+</div>

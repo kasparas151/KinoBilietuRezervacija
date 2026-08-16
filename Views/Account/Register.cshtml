@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Registruotis";
+}
+
+<div class="container mt-5" style="max-width: 500px;">
+    <h2 class="mb-4">Registracija</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form method="post">
+        <div class="mb-3">
+            <label for="email" class="form-label">El. paštas</label>
+            <input type="email" name="email" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Slaptažodis</label>
+            <input type="password" name="password" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Registruotis</button>
+    </form>
+</div>

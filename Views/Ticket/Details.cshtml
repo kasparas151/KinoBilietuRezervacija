@@ -1,0 +1,23 @@
+﻿@model KinoBilietuRezervacija.Models.Ticket
+
+@{
+    ViewData["Title"] = "Bilieto informacija";
+}
+
+<h1>Bilieto informacija</h1>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Seansas?.Filmas?.Pavadinimas</h4>
+        <p><strong>Data:</strong> @Model.Seansas?.DataLaikas.ToString("yyyy-MM-dd HH:mm")</p>
+        <p><strong>Pirkėjas:</strong> @Model.PirkejoVardas</p>
+        <p><strong>Vieta:</strong> @Model.VietosNumeris</p>
+        <p><strong>Mokėjimo būsena:</strong> @Model.MokejimoBusena</p>
+    </div>
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-warning mt-3">Redaguoti</a>
+}
+<a asp-action="Index" class="btn btn-secondary mt-3">Atgal</a>

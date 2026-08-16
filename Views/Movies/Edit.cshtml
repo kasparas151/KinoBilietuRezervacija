@@ -1,0 +1,38 @@
+@model KinoBilietuRezervacija.Models.Movie
+
+@{
+    ViewData["Title"] = "Redaguoti film¹";
+}
+
+<h1>Redaguoti film¹</h1>
+
+<form asp-action="Edit" class="mt-4">
+    <input type="hidden" asp-for="ID" />
+
+    <div class="mb-3">
+        <label asp-for="Pavadinimas" class="form-label"></label>
+        <input asp-for="Pavadinimas" class="form-control" />
+        <span asp-validation-for="Pavadinimas" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Zanras" class="form-label"></label>
+        <input asp-for="Zanras" class="form-control" />
+        <span asp-validation-for="Zanras" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Trukme" class="form-label"></label>
+        <input asp-for="Trukme" class="form-control" />
+        <span asp-validation-for="Trukme" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Aprasymas" class="form-label"></label>
+        <textarea asp-for="Aprasymas" class="form-control"></textarea>
+        <span asp-validation-for="Aprasymas" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Išsaugoti</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Atgal</a>
+</form>

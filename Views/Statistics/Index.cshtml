@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Statistika";
+    var statistika = ViewData["Statistika"] as IEnumerable<dynamic>;
+    var vidurkis = (double)(ViewData["Vidurkis"] ?? 0);
+    var topKlientas = ViewData["TopKlientas"];
+    var nuo = ViewData["Nuo"];
+    var iki = ViewData["Iki"];
+}
+
+<h1 class="mb-4">Bilietų statistika pagal filmus</h1>
+
+<form method="get" class="mb-4">
+    <label class="form-label fw-semibold">Filtruoti pagal datą:</label>
+    <div class="row g-2 align-items-end">
+        <div class="col-md-3">
+            <input type="date" name="nuo" value="@nuo" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <input type="date" name="iki" value="@iki" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">Filtruoti</button>
+        </div>
+    </div>
+</form>
+
+<div class="mb-3">
+    <p class="mb-1"><strong>Vidutinis bilietų kiekis vienam seansui:</strong> @vidurkis.ToString("0.00")</p>
+    @if (topKlientas != null)
+    {
+        dynamic klientas = topKlientas;
+        <p class="mb-0">
+            <strong>Aktyviausias klientas:</strong> @klientas.Vartotojas
+            <span class="badge bg-info">@klientas.Kiekis bilietai</span>
+        </p>
+    }
+</div>
+
+<table class="table table-bordered table-striped align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Filmas</th>
+            <th>Bilietų kiekis</th>
+            <th>Pajamos (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in statistika)
+        {
+            <tr>
+                <td>@item.Filmas</td>
+                <td>@item.BilietuSkaicius</td>
+                <td>@item.Pajamos.ToString("0.00")</td>
+            </tr>
+        }
+    </tbody>
+</table>

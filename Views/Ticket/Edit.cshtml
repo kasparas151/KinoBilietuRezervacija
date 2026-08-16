@@ -1,0 +1,38 @@
+﻿@model KinoBilietuRezervacija.Models.Ticket
+
+@{
+    ViewData["Title"] = "Redaguoti bilietą";
+}
+
+<div class="container mt-4">
+    <h2>Redaguoti bilietą</h2>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="ID" />
+
+        <div class="mb-3">
+            <label asp-for="SeansoID" class="form-label">Seansas</label>
+            <select asp-for="SeansoID" class="form-select" asp-items="ViewBag.SeansoID"></select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PirkejoVardas" class="form-label">Pirkėjo vardas</label>
+            <input asp-for="PirkejoVardas" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="VietosNumeris" class="form-label">Vietos numeris</label>
+            <input asp-for="VietosNumeris" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="MokejimoBusena" class="form-label">Mokėjimo būsena</label>
+            <select asp-for="MokejimoBusena" class="form-select">
+                <option value="Neapmokėta">Neapmokėta</option>
+                <option value="Apmokėta">Apmokėta</option>
+            </select>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-success">💾 Išsaugoti</button>
+            <a asp-action="Index" class="btn btn-secondary">↩️ Atgal</a>
+        </div>
+    </form>
+</div>

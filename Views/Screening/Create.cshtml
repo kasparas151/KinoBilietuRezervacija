@@ -1,0 +1,32 @@
+﻿@model KinoBilietuRezervacija.Models.Screening
+@{
+    ViewData["Title"] = "Pridėti seansą";
+}
+
+<div class="container mt-4">
+    <h2>Pridėti seansą</h2>
+
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label asp-for="FilmoID" class="form-label">Filmas</label>
+            <select asp-for="FilmoID" class="form-select" asp-items="ViewBag.FilmoID"></select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DataLaikas" class="form-label">Data ir laikas</label>
+            <input asp-for="DataLaikas" type="datetime-local" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Kaina" class="form-label">Kaina (€)</label>
+            <input asp-for="Kaina" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="SalesNumeris" class="form-label">Salės numeris</label>
+            <input asp-for="SalesNumeris" class="form-control" />
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary"> Išsaugoti</button>
+            <a asp-action="Index" class="btn btn-secondary"> Atgal</a>
+        </div>
+    </form>
+</div>

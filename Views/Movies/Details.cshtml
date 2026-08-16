@@ -1,0 +1,24 @@
+﻿@model KinoBilietuRezervacija.Models.Movie
+
+@{
+    ViewData["Title"] = "Filmo informacija";
+}
+
+<h1>Filmas</h1>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Pavadinimas</h4>
+        <p class="card-text"><strong>Žanras:</strong> @Model.Zanras</p>
+        <p class="card-text"><strong>Trukmė:</strong> @Model.Trukme min</p>
+        <p class="card-text"><strong>Aprašymas:</strong> @Model.Aprasymas</p>
+    </div>
+</div>
+
+<div class="mt-3">
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-warning">Redaguoti</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary ms-2">Atgal</a>
+</div>

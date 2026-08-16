@@ -1,0 +1,52 @@
+﻿@model IEnumerable<KinoBilietuRezervacija.Models.Screening>
+    @{
+        ViewData["Title"] = "Seansų sąrašas";
+    }
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Seansai</h2>
+            @if (User.IsInRole("Admin"))
+            {
+                <a class="btn btn-primary" asp-action="Create"> Pridėti naują seansą</a>
+            }
+        </div>
+
+        <table class="table table-bordered table-hover align-middle text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th> Filmas</th>
+                    <th> Data ir laikas</th>
+                    <th> Kaina</th>
+                    <th> Salė</th>
+                    <th colspan="2">Veiksmai</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Filmas?.Pavadinimas</td>
+                        <td>@item.DataLaikas.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@item.Kaina.ToString("0.00") €</td>
+                        <td>@item.SalesNumeris</td>
+                        <td>
+                            <div class="d-flex gap-1 justify-content-center">
+                                <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.ID">Seanso informacija</a>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.ID">Redaguoti</a>
+                                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.ID">Ištrinti</a>
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            <a asp-controller="Ticket" asp-action="Create" asp-route-screeningId="@item.ID" class="btn btn-success btn-sm">
+                                Įsigyti
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

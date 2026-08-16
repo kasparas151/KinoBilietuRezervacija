@@ -1,0 +1,21 @@
+﻿@model KinoBilietuRezervacija.Models.Movie
+
+@{
+    ViewData["Title"] = "Ištrinti filmą";
+}
+
+<h1 class="mb-4">Ištrinti filmą</h1>
+
+<div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">Ar tikrai norite ištrinti šį filmą?</h4>
+    <hr />
+    <p><strong>Pavadinimas:</strong> @Model.Pavadinimas</p>
+    <p><strong>Žanras:</strong> @Model.Zanras</p>
+    <p><strong>Trukmė:</strong> @Model.Trukme min</p>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="ID" />
+    <button type="submit" class="btn btn-danger">Ištrinti</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Atgal</a>
+</form>
